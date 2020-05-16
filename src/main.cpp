@@ -5,9 +5,9 @@
 #include "LM75A.h"
 #include "../lib/pubsubclient/src/PubSubClient.h"
 
-#define SECOND 1000000
-#define MINUTE 60000000
-#define OUR 3600000000
+#define SECOND 1000000UL
+#define MINUTE 60000000UL
+#define HOUR 3600000000UL
 
 static WiFiClient wifiClient;
 static PubSubClient client(wifiClient);
@@ -38,7 +38,7 @@ void on_message(char* topic, byte* payload, unsigned int length) {
     Serial.print("Message arrived [");
     Serial.print(topic);
     Serial.print("] ");
-    for (int i = 0; i < length; i++) {
+    for (unsigned int i = 0; i < length; i++) {
         Serial.print((char)payload[i]);
     }
     Serial.println();
@@ -112,7 +112,7 @@ void setup(void)
 
     delay(1000);
 
-    ESP.deepSleep(10 * MINUTE);
+    ESP.deepSleep(HOUR);
 }
 
 
