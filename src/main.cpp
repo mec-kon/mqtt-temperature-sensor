@@ -26,12 +26,19 @@ void setup_wifi() {
     // We start by connecting to a WiFi network
     Serial.println("Wifi init");
     WiFi.begin(WLAN_SSID, WLAN_PASSWORD);  //Connect to the WiFi network
-    while (WiFi.status() != WL_CONNECTED) {  //Wait for connection
+    for(int i=0; (i<40) && (WiFi.status() != WL_CONNECTED); i++) {  //Wait for connection
         delay(500);
         Serial.println("Waiting to connect...");
     }
-    Serial.print("IP address: ");
-    Serial.println(WiFi.localIP()); //Print the local IP
+
+    if(WiFi.status() == WL_CONNECTED){
+        Serial.print("IP address: ");
+        Serial.println(WiFi.localIP()); //Print the local IP
+    }
+    else{
+        delay(1000);
+        ESP.deepSleep(10 * MINUTE);
+    }
 }
 
 void on_message(char* topic, byte* payload, unsigned int length) {
@@ -46,7 +53,7 @@ void on_message(char* topic, byte* payload, unsigned int length) {
 
 void reconnect() {
     // Loop until we're reconnected
-    while (!client.connected()) {
+    for(int i=0; (i<10) && (!client.connected()); i++) {
         Serial.print("Attempting MQTT connection...");
 
         // Attempt to connect
@@ -60,6 +67,10 @@ void reconnect() {
             // Wait 5 seconds before retrying
             delay(5000);
         }
+    }
+    if(!client.connected()){
+        delay(1000);
+        ESP.deepSleep(10 * MINUTE);
     }
 }
 
@@ -112,7 +123,7 @@ void setup(void)
 
     delay(1000);
 
-    ESP.deepSleep(HOUR);
+    ESP.deepSleep(10 * MINUTE);
 }
 
 
