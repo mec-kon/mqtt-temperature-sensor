@@ -97,11 +97,12 @@ void setup(void)
 
     float temperature_in_degrees = lm75a_sensor.getTemperatureInDegrees();
 
-    for (int i=0; i<5 && temperature_in_degrees != INVALID_LM75A_TEMPERATURE; i++) {
+    for (int i=0; i<5 && (temperature_in_degrees == INVALID_LM75A_TEMPERATURE); i++) {
         temperature_in_degrees = lm75a_sensor.getTemperatureInDegrees();
+        Serial.println(temperature_in_degrees);
     }
 
-    if (temperature_in_degrees == INVALID_LM75A_TEMPERATURE) {
+    if (temperature_in_degrees == (float) INVALID_LM75A_TEMPERATURE) {
         Serial.println("Error while getting temperature");
         String error_message = "error";
         error_message.toCharArray(msg, 6);
