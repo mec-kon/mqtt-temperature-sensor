@@ -3,7 +3,8 @@
 
 #include "config.h"
 #include "LM75A.h"
-#include "../lib/pubsubclient/src/PubSubClient.h"
+#include "PubSubClient.h"
+#include "Adafruit_Sensor.h"
 
 #define SECOND 1000000UL
 #define MINUTE 60000000UL
@@ -79,6 +80,8 @@ void reconnect() {
 void setup(void)
 {
     Serial.begin(115200);
+
+
 
     setup_wifi();
     client.setServer(MQTT_SERVER_ADDRESS, MQTT_SERVER_PORT);
