@@ -19,15 +19,6 @@
 namespace LM75AConstValues
 {
 
-/*
- * Accordingto I2C bus specifications,the LM75Ahas a 7-bitslaveaddress.
- * The four mostsignificantbits of the slaveaddressare hardwiredinsidethe LM75Aand are“1001”.
- * The threeleastsignificantbits of the addressare assigned to pins A2–A0,
- * and are set by connectingthesepins to groundfor a low, (0); or to +VS for a high.
- *
- * 0x48 = 1001000 (A2=0, A1=0, A0=0)
-*/
-const int LM75A_BASE_ADDRESS = 0x48;
 
 /*
  * The temperature register always stores an 11-bit 2's complement data giving atemperature resolution of 0.125°C.
