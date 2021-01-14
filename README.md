@@ -12,4 +12,5 @@ Config
 --------
 ```platformio init --board esp12e```  
 ```pio lib install "adafruit/Adafruit BME280 Library```  
-```pio lib install "knolleary/PubSubClient"```
+```pio lib install "knolleary/PubSubClient"```  
+```pio lib install "tzapu/WiFiManager"```

@@ -8,8 +8,8 @@
 #define WLAN_PASSWORD "passw0rd"
 
 #define MQTT_SERVER_ADDRESS "192.168.1.10"
-#define MQTT_SERVER_PORT 1883
-#define MQTT_CLIENT_ID "lm75_temperature_sensor"
+#define MQTT_SERVER_PORT "1883"
+#define MQTT_CLIENT_ID "weather_station"
 #define MQTT_CLIENT "client-name"
 #define MQTT_CLIENT_PASSWORD "passw0rd"
 
