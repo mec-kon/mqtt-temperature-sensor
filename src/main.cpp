@@ -1,7 +1,7 @@
 #include <Arduino.h>
 #include <ESP8266WiFi.h>
 
-//#include "config.h"
+#include "config.h"
 #include "LM75A.h"
 #include "PubSubClient.h"
 #include "Adafruit_Sensor.h"
@@ -157,6 +157,7 @@ bool setup_wifi() {
 
     //wifi_manager.resetSettings();
 
+    // add custom mqtt parameters
     // id/name, placeholder/prompt, default, length
     WiFiManagerParameter mqtt_server_address_parameter("mqtt_server_address","mqtt ip address", mqtt_config.mqtt_server_address, 16);
     WiFiManagerParameter mqtt_server_port_parameter("mqtt_server_port", "mqttt port", mqtt_config.mqtt_server_port, 5);
@@ -187,7 +188,7 @@ bool setup_wifi() {
 
     // fetches ssid and pass from eeprom and tries to connect
     // if it does not connect it starts an access point with the specified name
-    // here  "AutoConnectAP"
+    // here  "weather_station_wifi"
     // and goes into a blocking loop awaiting configuration
     wifi_manager.autoConnect("weather_station_wifi");
 
@@ -214,8 +215,10 @@ bool setup_wifi() {
         EEPROM.commit();
         config_changed = false;
     }
-
-    EEPROM.get(0, mqtt_config);
+    else{
+        EEPROM.get(0, mqtt_config);
+        Serial.println("config not changed");
+    }
 
     return true;
 }

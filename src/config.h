@@ -13,7 +13,7 @@
 #define MQTT_CLIENT "client-name"
 #define MQTT_CLIENT_PASSWORD "passw0rd"
 
-
+// default mqtt topics of the individual seonsors
 #define MQTT_PUBLISH_TOPIC_LM75_TEMPERATURE "/home/balcony/weather_station/lm75_sensor/temperature"
 #define MQTT_PUBLISH_TOPIC_BME280_TEMPERATURE "/home/balcony/weather_station/bme280_sensor/temperature"
 #define MQTT_PUBLISH_TOPIC_BME280_PRESSURE "/home/balcony/weather_station/bme280_sensor/pressure"
